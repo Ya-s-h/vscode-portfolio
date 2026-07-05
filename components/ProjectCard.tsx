@@ -11,13 +11,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
-  return (
-    <a
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={styles.card}
-    >
+  const content = (
+    <>
       <div className={styles.number}>
         <span>{String(index).padStart(2, '0')}</span>
       </div>
@@ -40,15 +35,32 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <p className={styles.description}>{project.description}</p>
         </div>
 
-        <div className={styles.action}>
-          <span className={styles.link}>
-            View Project
-            <VscLinkExternal size={12} />
-          </span>
-        </div>
+        {project.link && (
+          <div className={styles.action}>
+            <span className={styles.link}>
+              View Project
+              <VscLinkExternal size={12} />
+            </span>
+          </div>
+        )}
       </div>
-    </a>
+    </>
   );
+
+  if (project.link) {
+    return (
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.card}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return <div className={styles.card}>{content}</div>;
 };
 
 export default ProjectCard;
