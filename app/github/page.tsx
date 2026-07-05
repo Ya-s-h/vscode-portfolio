@@ -1,41 +1,74 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import GitHubCalendar from 'react-github-calendar';
-import { VscRepo, VscPerson, VscStarEmpty, VscRepoForked, VscLinkExternal, VscGithub } from 'react-icons/vsc';
+import { VscRepo, VscPerson, VscStarEmpty, VscRepoForked, VscLinkExternal, VscGithub, VscLoading } from 'react-icons/vsc';
 
 import RepoCard from '@/components/RepoCard';
 import { Repo, User } from '@/types';
 
 import styles from '@/styles/GithubPage.module.css';
 
-export const metadata: Metadata = {
-  title: 'GitHub',
-};
+const GITHUB_USERNAME = process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'Ya-s-h';
 
-export const revalidate = 600;
+export default function GithubPage() {
+  const [user, setUser] = useState<User | null>(null);
+  const [repos, setRepos] = useState<Repo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-async function getGithubData() {
-  const userRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`
-  );
-  if (!userRes.ok) {
-    throw new Error(`Failed to fetch user: ${userRes.status}`);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [userRes, repoRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=6`),
+        ]);
+
+        if (!userRes.ok || !repoRes.ok) {
+          throw new Error('Failed to fetch GitHub data');
+        }
+
+        const userData = await userRes.json();
+        const reposData = await repoRes.json();
+
+        setUser(userData);
+        setRepos(reposData);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Something went wrong');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.container}>
+          <div className={styles.loadingState}>
+            <VscLoading className={styles.loadingIcon} size={32} />
+            <p>Loading GitHub data...</p>
+          </div>
+        </div>
+      </div>
+    );
   }
-  const user: User = await userRes.json();
 
-  const repoRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?sort=pushed&per_page=6`
-  );
-  if (!repoRes.ok) {
-    throw new Error(`Failed to fetch repos: ${repoRes.status}`);
+  if (error || !user) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.container}>
+          <div className={styles.loadingState}>
+            <p>Failed to load GitHub data. Please try again later.</p>
+          </div>
+        </div>
+      </div>
+    );
   }
-  const repos: Repo[] = await repoRes.json();
-
-  return { user, repos };
-}
-
-export default async function GithubPage() {
-  const { user, repos } = await getGithubData();
 
   return (
     <div className={styles.page}>
@@ -121,7 +154,7 @@ export default async function GithubPage() {
           <h2 className={styles.sectionTitle}>Contribution Activity</h2>
           <div className={styles.contributions}>
             <GitHubCalendar
-              username={process.env.NEXT_PUBLIC_GITHUB_USERNAME!}
+              username={GITHUB_USERNAME}
               hideColorLegend
               hideMonthLabels
               colorScheme="dark"
