@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Yash Aggarwal's Portfolio",
     description:
       'A backend-focused engineer building enterprise automation and scalable systems.',
-    images: ['https://imgur.com/4zi5KkQ.png'],
+    images: ['/website-image.png'],
     url: 'https://yashagg.com',
   },
   twitter: {
