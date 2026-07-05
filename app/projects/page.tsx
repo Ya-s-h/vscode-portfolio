@@ -48,7 +48,7 @@ const ProjectsPage = () => {
         <footer className={styles.footer}>
           <div className={styles.footerLine} />
           <a 
-            href="https://github.com/itsnitinr?tab=repositories"
+            href="https://github.com/Ya-s-h?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.footerLink}

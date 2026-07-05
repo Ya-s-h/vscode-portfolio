@@ -7,28 +7,28 @@ import '@/styles/themes.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nitin Ranganath | Portfolio',
-    template: 'Nitin Ranganath | %s',
+    default: 'Yash Aggarwal | Portfolio',
+    template: 'Yash Aggarwal | %s',
   },
   description:
-    "Nitin Ranganath is an avid full stack web developer building websites and applications you'd love to use",
+    'Yash Aggarwal is a backend-focused engineer building enterprise automation systems, APIs, and scalable data pipelines.',
   keywords: [
-    'nitin ranganath',
-    'nitin',
-    'ranganath',
-    'web developer portfolio',
-    'nitin web developer',
-    'nitin developer',
-    'mern stack',
-    'nitin ranganath portfolio',
-    'vscode-portfolio',
+    'yash aggarwal',
+    'yash',
+    'aggarwal',
+    'backend engineer',
+    'automation engineer',
+    'python developer',
+    'mongodb',
+    'yashagg',
+    'portfolio',
   ],
   openGraph: {
-    title: "Nitin Ranganath's Portfolio",
+    title: "Yash Aggarwal's Portfolio",
     description:
-      "A full-stack developer building websites that you'd like to use.",
+      'A backend-focused engineer building enterprise automation and scalable systems.',
     images: ['https://imgur.com/4zi5KkQ.png'],
-    url: 'https://vscode-portfolio.vercel.app',
+    url: 'https://yashagg.com',
   },
   twitter: {
     card: 'summary_large_image',
