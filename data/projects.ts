@@ -2,41 +2,40 @@ export interface Project {
   title: string;
   description: string;
   logo: string;
-  link: string;
+  link?: string;
   slug: string;
 }
 
 export const projects: Project[] = [
   {
-    title: 'Driwwwle',
+    title: 'Remote Intensive Care Application',
     description:
-      'Discover creative websites and developers. A portal for you to share your projects.',
-    logo: '/logos/driwwwle.svg',
-    link: 'https://github.com/itsnitinr/driwwwle',
-    slug: 'driwwwle',
+      'Flask web app with online appointment booking, medicine delivery, and real-time heart rate sensor monitoring.',
+    logo: '/logos/js_icon.svg',
+    link: 'https://github.com/TeamRocketBalleBalle/RICA-Remastered',
+    slug: 'rica',
   },
   {
-    title: 'VSCode Portfolio',
+    title: 'Riktionary',
     description:
-      'A Visual Studio Code themed developer portfolio built with Next.js and CSS Modules.',
-    logo: '/logos/vsc.svg',
-    link: 'https://github.com/itsnitinr/vscode-portfolio',
-    slug: 'vscode-portfolio',
+      'Java multiplayer image guessing game — first to 5 points wins.',
+    logo: '/logos/react_icon.svg',
+    link: 'https://github.com/TeamRocketBalleBalle/Ricktionary',
+    slug: 'riktionary',
   },
   {
-    title: 'Subtrackt',
+    title: 'Twitch Watcher Discord Bot',
     description:
-      'A simple and elegant way to track your subscriptions and save money.',
-    logo: '/logos/subtrackt.svg',
-    link: 'https://github.com/itsnitinr/subtrackt',
-    slug: 'subtrackt',
+      'Python Discord bot that monitors RLCS streams and claims loot drops via Docker containers.',
+    logo: '/logos/json_icon.svg',
+    link: 'https://github.com/Ya-s-h/twitch-watcher-discord-bot',
+    slug: 'twitch-watcher',
   },
   {
-    title: 'Coolify Deployments',
+    title: 'Inventory Management System',
     description:
-      'VSCode extension to track and deploy your Coolify applications.',
-    logo: '/logos/coolify.svg',
-    link: 'https://github.com/itsnitinr/coolify-vscode-extension',
-    slug: 'coolify-vscode-extension',
+      'MERN stack multi-user inventory system with hierarchical role-based auth, CRUD logging, and low-stock email alerts.',
+    logo: '/logos/markdown_icon.svg',
+    slug: 'inventory-management',
   },
 ];
