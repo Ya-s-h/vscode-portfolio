@@ -5,6 +5,8 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import "@/styles/themes.css";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yashagg.com";
+
 export const metadata: Metadata = {
   title: {
     default: "Yash Aggarwal | Portfolio",
@@ -23,12 +25,13 @@ export const metadata: Metadata = {
     "yashagg",
     "portfolio",
   ],
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: "Yash Aggarwal's Portfolio",
     description:
       "A backend-focused engineer building enterprise automation and scalable systems.",
-    images: ["https://vscode-portfolio-ege.pages.dev/website-image.png"],
-    url: "https://yashagg.com",
+    images: ["/website-image.png"],
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
